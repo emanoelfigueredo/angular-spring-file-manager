@@ -1,0 +1,31 @@
+.body {
+  width: 100vw;
+  height: 100vh;
+}
+
+.body-claro {
+  background-color: var(--background-body-claro);
+}
+
+.body-escuro {
+  background-color: var(--background-body-escuro);
+}
+
+.view-container-main {
+  position: relative;
+  top: var(--dimensao-barra-header);
+  left: var(--dimensao-barra-header);
+  width: calc(100% - var(--dimensao-barra-header));
+  display: flex;
+  flex-direction: column;
+}
+
+.view-container-main-claro {
+  background-color: var(--background-body-claro);
+
+}
+
+.view-container-main-escuro {
+  background-color: var(--background-body-escuro);
+
+}

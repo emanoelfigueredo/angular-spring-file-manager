@@ -1,0 +1,39 @@
+.barra-pesquisa {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+}
+
+.barra-pesquisa-claro {
+  background-color: var(--background-body-claro);
+}
+
+.barra-pesquisa-escuro {
+  background-color: var(--background-body-escuro);
+}
+
+.barra-pesquisa-escuro input {
+  background-color: var(--background-body-escuro);
+  color: white;
+}
+
+.barra-pesquisa__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  color: var(--icon-color);
+}
+
+.barra-pesquisa input {
+  width: 85%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: none;
+  padding: 0.5em 0.25em;
+  font-size: 0.75em;
+  border-radius: 7px;
+}

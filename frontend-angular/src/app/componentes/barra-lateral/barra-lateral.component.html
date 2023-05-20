@@ -1,0 +1,24 @@
+<div class="barra-lateral barra-lateral-{{ tema }}">
+  <div class="barra-lateral__top">
+    <img src="assets/images/logo-page.png" alt="" />
+    <div class="barra-lateral__sections-links">
+      <div class="sections-links__icon sections-links__icon-{{ tema }}">
+        <fa-icon [icon]="iconeFoto"></fa-icon>
+      </div>
+      <div class="sections-links__icon sections-links__icon-{{ tema }}">
+        <fa-icon [icon]="iconeVideo"></fa-icon>
+      </div>
+      <div class="sections-links__icon sections-links__icon-{{ tema }}">
+        <fa-icon [icon]="iconeArquivos"></fa-icon>
+      </div>
+      <div class="sections-links__icon sections-links__icon-{{ tema }}">
+        <fa-icon [icon]="iconeAudio"></fa-icon>
+      </div>
+    </div>
+  </div>
+  <div class="barra-lateral__bottom">
+    <div (click)="trocarTemaAtual()" class="sections-links__icon sections-links__icon-{{ tema }}">
+      <fa-icon [icon]="obterIconePorTema()"></fa-icon>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700&display=swap');
+
+:root {
+  --dimensao-barra-header: 3em;
+  --background-body-claro: #F5F6FA;
+  --background-body-escuro: #0F0F12;
+  --background-claro: #FFFFFF;
+  --background-escuro: #1F2128;
+  --icon-color: #4B4B53;
+  --icon-color-escuro: white;
+  --color-button: #7363DC;
+  --color-tag-escuro: #313441;
+  --color-tag-claro: #FDFDFE;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--background-body-escuro) var(--background-escuro);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--background-body);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-tag-escuro);
+  border-radius: 20px;
+  opacity: 0.1;
+  border: 3px solid var(--background-escuro);
+}
+
+
+
+.file-check {
+  position: relative;
+}
+
+.file-check input {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.file-check input:not(:checked) + .checkmark {
+  height: 1em;
+  content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
+}
+
+.file-check input:checked + .checkmark {
+  height: 1em;
+  content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
+}
+
+fa-icon {
+  cursor: pointer;
+}

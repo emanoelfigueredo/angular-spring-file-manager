@@ -1,0 +1,36 @@
+footer {
+  width: 100%;
+  padding: 1em;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+.footer-claro {
+  border-top: 1px solid var(--icon-color);
+  background-color: var(--background-body-claro);
+  color: var(--icon-color);;
+}
+
+.footer-escuro {
+  border-top: 1px solid white;
+  background-color: var(--background-body-escuro);
+  color: white;
+}
+
+footer p {
+  font-size: 0.9em;
+  text-align: center;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid gray;
+}
+
+.social-medias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  margin-bottom: 1em;
+}

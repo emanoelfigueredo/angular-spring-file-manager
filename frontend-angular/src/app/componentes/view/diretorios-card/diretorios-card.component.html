@@ -1,0 +1,14 @@
+<div class="diretorios-card diretorios-card-{{ tema }}">
+  <div class="diretorios-card__botao-add">
+    <button>
+      <fa-icon [icon]="iconeAdicionar"></fa-icon>
+      <p>Nova pasta</p>
+    </button>
+  </div>
+  <div class="diretorios-card__lista-diretorios">
+    <app-diretorio [tema]="tema"></app-diretorio>
+    <app-diretorio [tema]="tema"></app-diretorio>
+    <app-diretorio [tema]="tema"></app-diretorio>
+  </div>
+  <app-paginacao [tema]="tema"t></app-paginacao>
+</div>

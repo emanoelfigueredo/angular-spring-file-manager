@@ -1,0 +1,51 @@
+.diretorios-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.5em;
+  padding:1em;
+  border-radius: 7px;
+}
+
+.diretorios-card-claro {
+  background-color: var(--background-claro);
+}
+
+.diretorios-card-escuro {
+  background-color: var(--background-escuro);
+}
+
+.diretorios-card__botao-add {
+  width: 100%;
+  padding: 0 0 0.5em 0;
+}
+
+.diretorios-card__botao-add button {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  background-color: var(--color-button);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  cursor: pointer;
+}
+
+.diretorios-card__botao-add button {
+  font-size: 0.75em;
+}
+
+.diretorios-card__lista-diretorios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 100%;
+  height: 120px;
+}
+

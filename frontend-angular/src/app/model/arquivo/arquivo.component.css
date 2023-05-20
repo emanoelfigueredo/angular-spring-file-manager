@@ -1,0 +1,45 @@
+.card-file {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em 0;
+}
+
+.file {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.card-file__tipo {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-file__tipo img {
+  height: 100%;
+}
+
+.name-file p {
+  font-size: 0.75em;
+}
+
+.name-file .file-date {
+  font-size: 0.5em
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+fa-icon {
+  font-size: 12px;
+}

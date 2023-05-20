@@ -1,0 +1,21 @@
+<section class="list-files list-files-{{ tema }}">
+  <div class="list-files__barra-pesquisa">
+    <app-input [tema]="tema"></app-input>
+    <div class="files-resultados">
+      <div class="file-check">
+        <input type="checkbox" title="Selecionar todos"/>
+        <span class="checkmark"></span>
+        <fa-icon [icon]="iconeDeletar" title="Excluir arquivos selecionados"></fa-icon>
+      </div>
+      <p>1-50 de 2000</p>
+    </div>
+  </div>
+  <div class="list-files__files">
+    <app-arquivo></app-arquivo>
+    <app-arquivo></app-arquivo>
+    <app-arquivo></app-arquivo>
+    <app-arquivo></app-arquivo>
+    <app-arquivo></app-arquivo>
+  </div>
+  <app-paginacao [tema]="tema"></app-paginacao>
+</section>

@@ -1,0 +1,35 @@
+.diretorio-card {
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  border-radius: 7px;
+  color: var(--icon-color);
+  cursor: pointer;
+}
+
+.diretorio-card p {
+  font-size: 0.75em;
+}
+
+.diretorio-card-claro {
+  background-color: var(--color-tag-claro);
+}
+
+.diretorio-card-escuro {
+  background-color: var(--color-tag-escuro);
+  color: var(--icon-color-escuro);
+}
+
+.diretorio-nome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+.diretorio-favorito {
+  color: var(--background-escuro);
+}
