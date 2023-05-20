@@ -1,8 +1,9 @@
 .barra-lateral {
   position: fixed;
+  top: var(--dimensao-barra-header);
   z-index: 200;
   width: var(--dimensao-barra-header);
-  height: 100vh;
+  height: calc(100% - var(--dimensao-barra-header));
   padding: 0.35em;
   display: flex;
   flex-direction: column;
@@ -18,13 +19,9 @@
   background-color: var(--background-escuro);
 }
 
-.barra-lateral img {
-  width: 100%;
-  margin-top: 0.25em;
-  margin-bottom: 0.5em;
-}
-
 .barra-lateral__sections-links {
+  width: 100%;
+  margin-top: 0.5em;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,13 +30,17 @@
   cursor: pointer;
 }
 
-.sections-links__icon-claro {
-  background-color: var(--color-tag-claro);
+.link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  color: white;
+  padding: 0 1em;
 }
 
-.sections-links__icon-escuro {
-  background-color: var(--color-tag-escuro);
-  color: var(--icon-color-escuro);
+.link p {
+  display: none;
 }
 
 .sections-links__icon {
@@ -51,16 +52,56 @@
   border-radius: 7px;
 }
 
-.barra-lateral__bottom  .sections-links__icon {
-  cursor: pointer;
-  margin-bottom: 0.5em;
-}
-
-.barra-lateral__bottom .sections-links__icon-claro {
+.sections-links__icon-claro {
   background-color: var(--color-tag-claro);
 }
 
-.barra-lateral__bottom .sections-links__icon-escuro {
+.sections-links__icon-escuro {
   background-color: var(--color-tag-escuro);
   color: var(--icon-color-escuro);
 }
+
+.sections-links__icon-claro {
+  background-color: var(--color-tag-claro);
+}
+
+.sections-links__icon-escuro {
+  background-color: var(--color-tag-escuro);
+  color: var(--icon-color-escuro);
+}
+
+.link-bottom {
+  margin-bottom: 0.2em;
+}
+
+@media screen and (min-width: 900px) {
+
+  .barra-lateral {
+    width: var(--dimensao-barra-header-grande);
+  }
+
+  .barra-lateral img {
+    width: 50px;
+    margin-top: 0.25em;
+    margin-bottom: 0.5em;
+  }
+
+  .barra-lateral__top {
+    width: 100%;
+  }
+
+  .link {
+    display: flex;
+    align-items: center;
+  }
+
+  .link p {
+    display: flex;
+  }
+
+  .link-bottom {
+    margin-bottom: 1em;
+  }
+
+}
+

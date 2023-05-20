@@ -1,24 +1,40 @@
 <div class="barra-lateral barra-lateral-{{ tema }}">
   <div class="barra-lateral__top">
-    <img src="assets/images/logo-page.png" alt="" />
     <div class="barra-lateral__sections-links">
-      <div class="sections-links__icon sections-links__icon-{{ tema }}">
-        <fa-icon [icon]="iconeFoto"></fa-icon>
+      <div class="link">
+        <div class="sections-links__icon sections-links__icon-{{ tema }}">
+          <fa-icon [icon]="iconeFoto"></fa-icon>
+        </div>
+        <p>Imagens</p>
       </div>
-      <div class="sections-links__icon sections-links__icon-{{ tema }}">
-        <fa-icon [icon]="iconeVideo"></fa-icon>
+      <div class="link">
+        <div class="sections-links__icon sections-links__icon-{{ tema }}">
+          <fa-icon [icon]="iconeVideo"></fa-icon>
+        </div>
+        <p>Vídeos</p>
       </div>
-      <div class="sections-links__icon sections-links__icon-{{ tema }}">
-        <fa-icon [icon]="iconeArquivos"></fa-icon>
+      <div class="link">
+        <div class="sections-links__icon sections-links__icon-{{ tema }}">
+          <fa-icon [icon]="iconeArquivos"></fa-icon>
+        </div>
+        <p>Arquivos</p>
       </div>
-      <div class="sections-links__icon sections-links__icon-{{ tema }}">
-        <fa-icon [icon]="iconeAudio"></fa-icon>
+      <div class="link">
+        <div class="sections-links__icon sections-links__icon-{{ tema }}">
+          <fa-icon [icon]="iconeAudio"></fa-icon>
+        </div>
+        <p>Áudio</p>
       </div>
     </div>
   </div>
-  <div class="barra-lateral__bottom">
-    <div (click)="trocarTemaAtual()" class="sections-links__icon sections-links__icon-{{ tema }}">
-      <fa-icon [icon]="obterIconePorTema()"></fa-icon>
+  <div class="barra-lateral-top">
+    <div class="barra-lateral__sections-links link-bottom">
+      <div class="link">
+        <div (click)="trocarTemaAtual()" class="sections-links__icon sections-links__icon-{{ tema }}">
+          <fa-icon [icon]="obterIconePorTema()"></fa-icon>
+        </div>
+        <p>Trocar tema</p>
+      </div>
     </div>
   </div>
 </div>

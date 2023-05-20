@@ -37,3 +37,39 @@
   font-size: 0.75em;
   border-radius: 7px;
 }
+
+@media screen and (min-width: 700px) {
+
+  .barra-pesquisa__icon {
+    width: 10%;
+  }
+
+  .barra-pesquisa input {
+    width: 90%;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+
+  .barra-pesquisa__icon {
+    width: 7%;
+  }
+
+  .barra-pesquisa input {
+    width: 93%;
+  }
+
+}
+
+@media screen and (min-width: 1100px) {
+
+  .barra-pesquisa__icon {
+    width: 6%;
+  }
+
+  .barra-pesquisa input {
+    width: 94%;
+  }
+
+}

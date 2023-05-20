@@ -29,3 +29,13 @@
   background-color: var(--background-body-escuro);
 
 }
+
+@media screen and (min-width: 900px) {
+
+  .view-container-main {
+    left: 200px;
+    width: calc(100% - 200px);
+
+  }
+
+}

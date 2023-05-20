@@ -2,6 +2,7 @@
 
 :root {
   --dimensao-barra-header: 3em;
+  --dimensao-barra-header-grande: 200px;
   --background-body-claro: #F5F6FA;
   --background-body-escuro: #0F0F12;
   --background-claro: #FFFFFF;
@@ -19,6 +20,7 @@
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  overflow-x: hidden;
 }
 
 /* Works on Firefox */
@@ -29,16 +31,18 @@
 
 /* Works on Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
+  z-index: 1000;
   width: 12px;
 }
 
 *::-webkit-scrollbar-track {
+  z-index: 1000;
   background: var(--background-body);
 }
 
 *::-webkit-scrollbar-thumb {
+  z-index: 1000;
   background-color: var(--color-tag-escuro);
-  border-radius: 20px;
   opacity: 0.1;
   border: 3px solid var(--background-escuro);
 }
@@ -58,11 +62,13 @@
 }
 
 .file-check input:not(:checked) + .checkmark {
+  background-color: var(--background-escuro);
   height: 1em;
   content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
 }
 
 .file-check input:checked + .checkmark {
+  background-color: var(--background-escuro);
   height: 1em;
   content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
 }

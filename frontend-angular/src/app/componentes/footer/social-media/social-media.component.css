@@ -1,4 +1,9 @@
 .social-media {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border-radius: 50%;
   padding: 0.4em 0.58em;

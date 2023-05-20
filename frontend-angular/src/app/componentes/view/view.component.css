@@ -5,4 +5,100 @@
   flex-direction: column;
   gap: 1em;
   padding: 1em;
+  z-index: 100;
+}
+
+@media screen and (min-width: 700px) {
+
+  .view-container {
+    width: 100%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(5, calc((100% - var(--dimensao-barra-header) - 1em) / 5));
+  }
+
+  app-diretorios-card {
+    grid-column: 1 / span 2;
+  }
+
+  app-files-view {
+    grid-column: 3 / span 3;
+  }
+
+}
+
+@media screen and (min-width: 900px) {
+
+  .view-container {
+    width: 100%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(4, calc((100% - 50px) / 4));
+  }
+
+  app-diretorios-card {
+    grid-column: 1 / span 2;
+  }
+
+  app-files-view {
+    grid-column: 3 / span 2;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+
+  .view-container {
+    width: 100%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(5, calc((100% - 60px) / 5));
+  }
+
+  app-diretorios-card {
+    grid-column: 1 / span 2;
+  }
+
+  app-files-view {
+    grid-column: 3 / span 3;
+  }
+
+}
+
+@media screen and (min-width: 1100px) {
+
+  .view-container {
+    width: 100%;
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(8, calc((100% - 110px) / 8));
+  }
+
+  app-diretorios-card {
+    grid-column: 1 / span 3;
+  }
+
+  app-files-view {
+    grid-column: 4 / span 5;
+  }
+
+}
+
+
+@media screen and (min-width: 1300px) {
+
+  .view-container {
+    display: grid;
+    padding: 1em;
+    grid-template-columns: repeat(8, calc((100% - var(--dimensao-barra-header) - 4em) / 8));
+  }
+
+  app-diretorios-card {
+    grid-column: 1 / span 2;
+  }
+
+  app-files-view {
+    grid-column: 3 / span 6;
+  }
+
 }

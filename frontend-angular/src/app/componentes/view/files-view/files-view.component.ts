@@ -1,5 +1,5 @@
 import { Tema } from './../../../../model/tema';
-import { faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faAdd, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -14,5 +14,6 @@ export class FilesViewComponent {
 
   readonly iconeSearch = faSearch;
   readonly iconeDeletar = faTrash;
+  readonly iconeAdicionar = faAdd;
 
 }
