@@ -1,8 +1,9 @@
 <div class="body body-{{ tema }}">
   <app-header [tema]="tema"></app-header>
   <app-barra-lateral (alteracaoDeTema)="trocarTemaAtual($event)"></app-barra-lateral>
+  <app-modal-adicionar-diretorio (modalFechado)="fecharModalCriarDiretorio()" [modalCriarPastaAberto]="modalCriarPastaAberto"></app-modal-adicionar-diretorio>
   <section class="view-container-main view-container-main-{{ tema }}">
-    <app-view [tema]="tema"></app-view>
+    <app-view [tema]="tema" (eventoAbrirModalAdicionarPasta)="abrirModalCriarDiretorio()"></app-view>
     <app-footer [tema]="tema"></app-footer>
   </section>
 </div>

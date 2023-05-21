@@ -16,6 +16,8 @@ import { InputComponent } from './componentes/input/input.component';
 import { ArquivoComponent } from './model/arquivo/arquivo.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { SocialMediaComponent } from './componentes/footer/social-media/social-media.component';
+import { ModalAdicionarDiretorioComponent } from './componentes/modal-adicionar-diretorio/modal-adicionar-diretorio.component';
+import { EntryComponent } from './componentes/entry/entry.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { SocialMediaComponent } from './componentes/footer/social-media/social-m
     InputComponent,
     ArquivoComponent,
     FooterComponent,
-    SocialMediaComponent
+    SocialMediaComponent,
+    ModalAdicionarDiretorioComponent,
+    EntryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,10 @@
+<div class="modal" *ngIf="modalCriarPastaAberto">
+  <p>Adicionar pasta</p>
+  <fa-icon (click)="fecharModal()" [icon]="iconeSair"></fa-icon>
+ <input type="text"
+ class="entry"
+ placeholder="Nome da pasta"
+ >
+ <button>Adicionar</button>
+</div>
+<div class="back-modal" *ngIf="modalCriarPastaAberto"></div>
