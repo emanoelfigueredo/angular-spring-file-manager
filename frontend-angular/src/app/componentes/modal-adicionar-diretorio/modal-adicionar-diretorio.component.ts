@@ -1,14 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { faClose } from '@fortawesome/free-solid-svg-icons';
+import { Modal } from 'src/app/model/modal';
 
 @Component({
   selector: 'app-modal-adicionar-diretorio',
   templateUrl: './modal-adicionar-diretorio.component.html',
   styleUrls: ['./modal-adicionar-diretorio.component.css']
 })
-export class ModalAdicionarDiretorioComponent {
-
-  readonly iconeSair = faClose;
+export class ModalAdicionarDiretorioComponent extends Modal {
 
   @Input()
   modalCriarPastaAberto: boolean = false;

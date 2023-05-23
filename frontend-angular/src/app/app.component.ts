@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Tema } from 'src/model/tema';
 import { EmissorCriacaoDiretorio } from './services/emitir-criacao-diretorio';
 
@@ -7,24 +7,13 @@ import { EmissorCriacaoDiretorio } from './services/emitir-criacao-diretorio';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'dashboard-file-manager';
   tema: Tema = Tema.ESCURO;
 
   modalCriarPastaAberto: boolean = false;
-
-  ngOnInit(): void {
-
-  }
-
-  public abrirModalCriarDiretorio(): void {
-    this.modalCriarPastaAberto = true;
-  }
-
-  public fecharModalCriarDiretorio(): void {
-    this.modalCriarPastaAberto = false;
-  }
+  modalAdicionarArquivosAberto: boolean = false;
 
   public trocarTemaAtual(tema: Tema): void {
     this.tema = tema;

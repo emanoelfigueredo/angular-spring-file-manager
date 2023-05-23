@@ -1,6 +1,6 @@
 import { Tema } from './../../../../model/tema';
 import { faAdd, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-files-view',
@@ -12,8 +12,15 @@ export class FilesViewComponent {
   @Input()
   tema: Tema = Tema.ESCURO;
 
+  @Output()
+  eventoAbrirModalAdicionarArquivo = new EventEmitter();
+
   readonly iconeSearch = faSearch;
   readonly iconeDeletar = faTrash;
   readonly iconeAdicionar = faAdd;
+
+  public abrirModalAdicionarArquivo(): void {
+    this.eventoAbrirModalAdicionarArquivo.emit();
+  }
 
 }

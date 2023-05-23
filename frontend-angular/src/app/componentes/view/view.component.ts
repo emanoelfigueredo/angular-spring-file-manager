@@ -15,8 +15,15 @@ export class ViewComponent implements EmissorCriacaoDiretorio {
   @Output()
   eventoAbrirModalAdicionarPasta = new EventEmitter();
 
+  @Output()
+  eventoAbrirModalAdicionarArquivo = new EventEmitter();
+
   public abrirModalAdiconarPasta(): void {
     this.eventoAbrirModalAdicionarPasta.emit();
+  }
+
+  public abrirModalAdicionarArquivo(): void {
+    this.eventoAbrirModalAdicionarArquivo.emit();
   }
 
 }

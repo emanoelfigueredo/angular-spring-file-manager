@@ -16,53 +16,10 @@
   border-radius: 7px;
 }
 
-.modal p {
-  grid-row: 1;
-  grid-column: 1 / span 2;
-  text-align: center;
-  color: white;
-}
-
-.modal fa-icon {
-  top: 1em;
-  right: 1em;
-  position: absolute;
-  color: white;
-  cursor: pointer;
-}
-
 .entry {
   grid-row: 2;
-  width: 100%;
-  border: none;
-  background-color: var(--background-body-escuro);
-  padding: 0.5em 1em;
-  outline: none;
-  color: white;
-  border-radius: 7px;
-  cursor: pointer;
 }
 
 .modal button {
   grid-row: 2;
-  border: none;
-  background-color: var(--color-button);
-  padding: 0.5em 1em;
-  outline: none;
-  color: white;
-  border-radius: 7px;
-  text-align: center;
-  cursor: pointer;
-
-}
-
-.back-modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: black;
-  opacity: 0.8;
-  z-index: 2000;
 }

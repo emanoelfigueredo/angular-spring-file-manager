@@ -1,0 +1,43 @@
+<div
+(dragenter)="ativarDropAllScreen()"
+class="modal"
+*ngIf="modalAdicionarArquivosAberto"
+>
+  <div id="modal-file-up" class="modal-file-up">
+    <p class="modal-title">Adicionar arquivos</p>
+    <fa-icon (click)="fecharModal()" [icon]="iconeSair" class="close"></fa-icon>
+    <label class="entry-file-label {{ obterMargemBottomQuandoTiverArquivo() }}" for="enviar">
+    <p>Selecione ou solte o arquivo</p>
+    </label>
+    <input type="file"
+      class="entry-file"
+      id="enviar"
+      (change)="adicionarArquivos($event)"
+      multiple
+    >
+    <div class="preview">
+      <div class="file-preview" *ngFor="let file of files">
+        <fa-icon (click)="removerArquivo(file)" [icon]="iconeSair" class="remover-file"></fa-icon>
+        <app-preview-imagem [file]="file"></app-preview-imagem>
+      </div>
+    </div>
+  </div>
+ <button>Adicionar</button>
+</div>
+<div class="back-modal" *ngIf="modalAdicionarArquivosAberto"></div>
+<div
+  (dragleave)="desativarDropAllScreen()"
+  (drop)="desativarDropAllScreen()"
+  class="custom-dropzone"
+  ngx-dropzone
+  *ngIf="dropFileAllScreen"
+  (change)="adicionarArquivosDrop($event)"
+>
+</div>
+<div class="box-dropzone" *ngIf="dropFileAllScreen">
+  <div class="box-dropzone__border box-dropzone__top-left"></div>
+  <div class="box-dropzone__border box-dropzone__top-right"></div>
+  <div class="box-dropzone__border box-dropzone__bottom-left"></div>
+  <div class="box-dropzone__border box-dropzone__bottom-right"></div>
+  <p>Solte os arquivos em qualquer lugar</p>
+</div>

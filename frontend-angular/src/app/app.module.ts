@@ -18,6 +18,10 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { SocialMediaComponent } from './componentes/footer/social-media/social-media.component';
 import { ModalAdicionarDiretorioComponent } from './componentes/modal-adicionar-diretorio/modal-adicionar-diretorio.component';
 import { EntryComponent } from './componentes/entry/entry.component';
+import { ModalAdicionarArquivoComponent } from './componentes/modal-adicionar-arquivo/modal-adicionar-arquivo.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { PreviewImagemComponent } from './componentes/modal-adicionar-arquivo/preview-imagem/preview-imagem.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { EntryComponent } from './componentes/entry/entry.component';
     FooterComponent,
     SocialMediaComponent,
     ModalAdicionarDiretorioComponent,
-    EntryComponent
+    EntryComponent,
+    ModalAdicionarArquivoComponent,
+    PreviewImagemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    NgxDropzoneModule
   ],
   providers: [],
   bootstrap: [AppComponent]
