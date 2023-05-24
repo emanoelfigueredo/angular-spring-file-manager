@@ -1,4 +1,8 @@
 <div class="view-container">
   <app-diretorios-card (eventoAbrirModalAdicionarPasta)="abrirModalAdiconarPasta()" [tema]="tema"></app-diretorios-card>
-  <app-files-view [tema]="tema" (eventoAbrirModalAdicionarArquivo)="abrirModalAdicionarArquivo()"></app-files-view>
+  <app-files-view
+  [tema]="tema"
+  [tipoArquivos]="tipoDeArquivos"
+  (eventoAbrirModalAdicionarArquivo)="abrirModalAdicionarArquivo()"
+  ></app-files-view>
 </div>

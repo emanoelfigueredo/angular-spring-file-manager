@@ -1,0 +1,24 @@
+.preview-video {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border-radius: 7px;
+  gap: 1em;
+}
+
+.preview-video video {
+  height: 200px;
+  width: 100%;
+  border-radius: 7px;
+}
+
+.entry-file-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1em;
+}

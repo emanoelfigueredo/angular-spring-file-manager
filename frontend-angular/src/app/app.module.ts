@@ -22,6 +22,9 @@ import { ModalAdicionarArquivoComponent } from './componentes/modal-adicionar-ar
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { PreviewImagemComponent } from './componentes/modal-adicionar-arquivo/preview-imagem/preview-imagem.component';
+import { PreviewArquivoComponent } from './componentes/modal-adicionar-arquivo/preview-arquivo/preview-arquivo.component';
+import { PreviewVideoComponent } from './componentes/modal-adicionar-arquivo/preview-video/preview-video.component';
+import { PreviewAudioComponent } from './componentes/modal-adicionar-arquivo/preview-audio/preview-audio.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +44,10 @@ import { PreviewImagemComponent } from './componentes/modal-adicionar-arquivo/pr
     ModalAdicionarDiretorioComponent,
     EntryComponent,
     ModalAdicionarArquivoComponent,
-    PreviewImagemComponent
+    PreviewImagemComponent,
+    PreviewArquivoComponent,
+    PreviewVideoComponent,
+    PreviewAudioComponent
   ],
   imports: [
     BrowserModule,

@@ -4,21 +4,25 @@ class="modal"
 *ngIf="modalAdicionarArquivosAberto"
 >
   <div id="modal-file-up" class="modal-file-up">
-    <p class="modal-title">Adicionar arquivos</p>
+    <p class="modal-title">Adicionar {{ tipoArquivos.toLowerCase() }}</p>
     <fa-icon (click)="fecharModal()" [icon]="iconeSair" class="close"></fa-icon>
     <label class="entry-file-label {{ obterMargemBottomQuandoTiverArquivo() }}" for="enviar">
-    <p>Selecione ou solte o arquivo</p>
+    <p>Selecione ou solte</p>
     </label>
     <input type="file"
       class="entry-file"
       id="enviar"
       (change)="adicionarArquivos($event)"
       multiple
+      [accept]="obterTiposDeArquivosQueSeraoAceitos()"
     >
     <div class="preview">
       <div class="file-preview" *ngFor="let file of files">
-        <fa-icon (click)="removerArquivo(file)" [icon]="iconeSair" class="remover-file"></fa-icon>
-        <app-preview-imagem [file]="file"></app-preview-imagem>
+        <fa-icon (click)="removerArquivo(file)" [icon]="iconeSair" class="remover-file {{ obterPosicaoExcluirFile() }}"></fa-icon>
+        <app-preview-imagem [file]="file" *ngIf="tipoArquivos == 'Imagens'"></app-preview-imagem>
+        <app-preview-video [file]="file" *ngIf="tipoArquivos == 'Vídeos'"></app-preview-video>
+        <app-preview-arquivo [file]="file" *ngIf="tipoArquivos == 'Arquivos'"></app-preview-arquivo>
+        <app-preview-audio [file]="file" *ngIf="tipoArquivos == 'Áudios'"></app-preview-audio>
       </div>
     </div>
   </div>

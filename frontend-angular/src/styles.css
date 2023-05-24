@@ -126,3 +126,14 @@ fa-icon {
   z-index: 2000;
 }
 
+.file-preview .entry-file-form .entry-file-name {
+  width: 100%;
+  padding: 0.5em 1em;
+  cursor: pointer;
+  border: 3px solid var(--icon-color);
+  border-radius: 7px;
+  opacity: 0.3;
+  background-color: var(--background-escuro);
+  outline: none;
+  color: white;
+}

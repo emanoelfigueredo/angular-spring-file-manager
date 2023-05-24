@@ -1,6 +1,7 @@
 import { EmissorCriacaoDiretorio } from 'src/app/services/emitir-criacao-diretorio';
 import { Tema } from './../../../model/tema';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { TipoArquivo } from 'src/app/model/arquivo/tipo-arquivo';
 
 @Component({
   selector: 'app-view',
@@ -8,6 +9,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements EmissorCriacaoDiretorio {
+
+  @Input()
+  tipoDeArquivos!: TipoArquivo;
 
   @Input()
   tema: Tema = Tema.ESCURO;

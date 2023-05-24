@@ -1,3 +1,4 @@
+import { TipoArquivo } from 'src/app/model/arquivo/tipo-arquivo';
 import { Component, Input } from '@angular/core';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { Tema } from 'src/model/tema';
@@ -13,5 +14,8 @@ export class HeaderComponent {
 
   @Input()
   tema: Tema = Tema.ESCURO;
+
+  @Input()
+  tipoArquivos!: TipoArquivo;
 
 }

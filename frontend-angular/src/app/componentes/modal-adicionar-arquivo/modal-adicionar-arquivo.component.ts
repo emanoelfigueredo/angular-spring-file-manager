@@ -1,7 +1,7 @@
+import { TipoArquivo } from 'src/app/model/arquivo/tipo-arquivo';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { Modal } from 'src/app/model/modal';
-import { FileUtil } from 'src/app/services/manipulador-files';
+import { ResolvedorExtencoesService } from 'src/app/services/resolvedor-extencoes.service';
 
 @Component({
   selector: 'app-modal-adicionar-arquivo',
@@ -13,12 +13,19 @@ export class ModalAdicionarArquivoComponent extends Modal {
   @Input()
   modalAdicionarArquivosAberto: boolean = true;
 
+  @Input()
+  tipoArquivos!: TipoArquivo;
+
   @Output()
   modalFechado = new EventEmitter();
 
   dropFileAllScreen: boolean = false;
   tamanhoArquivo!: string;
   files: File[] = [];
+
+  constructor(private readonly resolvedorExtencoesArquivos: ResolvedorExtencoesService) {
+    super();
+  }
 
   public ativarDropAllScreen() {
     this.dropFileAllScreen = true;
@@ -50,8 +57,23 @@ export class ModalAdicionarArquivoComponent extends Modal {
   }
 
   public fecharModal(): void {
+    this.files = [];
     this.modalAdicionarArquivosAberto = false;
     this.modalFechado.emit();
+  }
+
+  public obterTiposDeArquivosQueSeraoAceitos(): string {
+    return this.resolvedorExtencoesArquivos.obterExtencoesPermitidas(this.tipoArquivos);
+  }
+
+  public obterPosicaoExcluirFile(): string {
+    if(this.tipoArquivos == TipoArquivo.IMAGEM) {
+      return 'top-1em';
+    }
+    if(this.tipoArquivos == TipoArquivo.VIDEO) {
+      return 'top-1-5em';
+    }
+    return '';
   }
 
 }

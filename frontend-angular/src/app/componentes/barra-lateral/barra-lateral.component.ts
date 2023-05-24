@@ -1,3 +1,4 @@
+import { TipoArquivo } from './../../model/arquivo/tipo-arquivo';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { faImage, faVideo, faFile, faHeadphones, faSun, faMoon, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { Tema, trocarTema } from 'src/model/tema';
@@ -20,6 +21,9 @@ export class BarraLateralComponent {
   @Output()
   alteracaoDeTema = new EventEmitter();
 
+  @Output()
+  tipoDeArquivoAlterado = new EventEmitter();
+
   public trocarTemaAtual(): void {
     this.tema = trocarTema(this.tema);
     this.emitirEventoDeAlteracaoDeTema();
@@ -34,6 +38,10 @@ export class BarraLateralComponent {
 
   private emitirEventoDeAlteracaoDeTema(): void {
     this.alteracaoDeTema.emit(this.tema);
+  }
+
+  public trocarTipoArquivo(tipo: string): void {
+    this.tipoDeArquivoAlterado.emit(tipo);
   }
 
 }

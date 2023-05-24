@@ -1,3 +1,4 @@
+import { TipoArquivo } from 'src/app/model/arquivo/tipo-arquivo';
 import { Tema } from './../../../../model/tema';
 import { faAdd, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -11,6 +12,9 @@ export class FilesViewComponent {
 
   @Input()
   tema: Tema = Tema.ESCURO;
+
+  @Input()
+  tipoArquivos!: TipoArquivo;
 
   @Output()
   eventoAbrirModalAdicionarArquivo = new EventEmitter();

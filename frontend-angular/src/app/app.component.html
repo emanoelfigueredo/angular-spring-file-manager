@@ -1,6 +1,9 @@
 <div class="body body-{{ tema }}">
-  <app-header [tema]="tema"></app-header>
-  <app-barra-lateral (alteracaoDeTema)="trocarTemaAtual($event)"></app-barra-lateral>
+  <app-header [tema]="tema" [tipoArquivos]="tipoDeArquivos"></app-header>
+  <app-barra-lateral
+    (alteracaoDeTema)="trocarTemaAtual($event)"
+    (tipoDeArquivoAlterado)="obterTipoDeArquivoSelecionado($event)"
+  ></app-barra-lateral>
   <app-modal-adicionar-diretorio
   (modalFechado)="modalCriarPastaAberto = false"
   [modalCriarPastaAberto]="modalCriarPastaAberto"
@@ -8,10 +11,12 @@
   <app-modal-adicionar-arquivo
   (modalFechado)="modalAdicionarArquivosAberto = false"
   [modalAdicionarArquivosAberto]="modalAdicionarArquivosAberto"
+  [tipoArquivos]="tipoDeArquivos"
   ></app-modal-adicionar-arquivo>
   <section class="view-container-main view-container-main-{{ tema }}">
     <app-view
     [tema]="tema"
+    [tipoDeArquivos]="tipoDeArquivos"
     (eventoAbrirModalAdicionarPasta)="modalCriarPastaAberto = true"
     (eventoAbrirModalAdicionarArquivo)="modalAdicionarArquivosAberto = true"
     ></app-view>

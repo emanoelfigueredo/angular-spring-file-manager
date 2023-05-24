@@ -1,25 +1,25 @@
 <div class="barra-lateral barra-lateral-{{ tema }}">
   <div class="barra-lateral__top">
     <div class="barra-lateral__sections-links">
-      <div class="link">
+      <div class="link" (click)="trocarTipoArquivo('Imagens')">
         <div class="sections-links__icon sections-links__icon-{{ tema }}">
           <fa-icon [icon]="iconeFoto"></fa-icon>
         </div>
         <p>Imagens</p>
       </div>
-      <div class="link">
+      <div class="link" (click)="trocarTipoArquivo('Vídeos')">
         <div class="sections-links__icon sections-links__icon-{{ tema }}">
           <fa-icon [icon]="iconeVideo"></fa-icon>
         </div>
         <p>Vídeos</p>
       </div>
-      <div class="link">
+      <div class="link" (click)="trocarTipoArquivo('Arquivos')">
         <div class="sections-links__icon sections-links__icon-{{ tema }}">
           <fa-icon [icon]="iconeArquivos"></fa-icon>
         </div>
         <p>Arquivos</p>
       </div>
-      <div class="link">
+      <div class="link" (click)="trocarTipoArquivo('Áudios')">
         <div class="sections-links__icon sections-links__icon-{{ tema }}">
           <fa-icon [icon]="iconeAudio"></fa-icon>
         </div>

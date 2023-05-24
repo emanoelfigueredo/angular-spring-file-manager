@@ -59,9 +59,16 @@
 
 .remover-file {
   position: absolute;
-  top: 1em;
   right: 1em;
   color: white;
+}
+
+.top-1em {
+  top: 1em;
+}
+
+.top-1-5em {
+  top: 1.5em;
 }
 
 .custom-dropzone {

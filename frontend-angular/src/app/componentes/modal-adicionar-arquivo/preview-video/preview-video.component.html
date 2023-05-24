@@ -1,0 +1,17 @@
+<div class="preview-video">
+  <video [src]="srcFile" controls></video>
+  <form [formGroup]="uploadForm" class="entry-file-form">
+    <input
+      type="text"
+      class="entry-file-name"
+      placeholder="Nome do arquivo"
+      formControlName="fileName"
+    >
+    <input
+      type="text"
+      class="entry-file-name"
+      placeholder="Extenção"
+      formControlName="fileNameExtencao"
+    >
+  </form>
+</div>
