@@ -2,6 +2,7 @@ import { TipoArquivo } from 'src/app/model/arquivo/tipo-arquivo';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Modal } from 'src/app/model/modal';
 import { ResolvedorExtencoesService } from 'src/app/services/resolvedor-extencoes.service';
+import { HttpClient, HttpRequest } from '@angular/common/http'
 
 @Component({
   selector: 'app-modal-adicionar-arquivo',
@@ -23,7 +24,7 @@ export class ModalAdicionarArquivoComponent extends Modal {
   tamanhoArquivo!: string;
   files: File[] = [];
 
-  constructor(private readonly resolvedorExtencoesArquivos: ResolvedorExtencoesService) {
+  constructor(private readonly resolvedorExtencoesArquivos: ResolvedorExtencoesService, private readonly httpClient: HttpClient) {
     super();
   }
 
@@ -74,6 +75,15 @@ export class ModalAdicionarArquivoComponent extends Modal {
       return 'top-1-5em';
     }
     return '';
+  }
+
+  public realizarUpload(): void {
+    const data: FormData = new FormData();
+    data.append('videos', this.files[0]);
+    const newRequest = new HttpRequest('POST', 'http://localhost:8081/videos/teste', data, {
+      reportProgress: true
+    });
+    this.httpClient.request(newRequest).subscribe();
   }
 
 }

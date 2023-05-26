@@ -25,6 +25,8 @@ import { PreviewImagemComponent } from './componentes/modal-adicionar-arquivo/pr
 import { PreviewArquivoComponent } from './componentes/modal-adicionar-arquivo/preview-arquivo/preview-arquivo.component';
 import { PreviewVideoComponent } from './componentes/modal-adicionar-arquivo/preview-video/preview-video.component';
 import { PreviewAudioComponent } from './componentes/modal-adicionar-arquivo/preview-audio/preview-audio.component';
+import { DragDropModule } from "@angular/cdk/drag-drop"
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { PreviewAudioComponent } from './componentes/modal-adicionar-arquivo/pre
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

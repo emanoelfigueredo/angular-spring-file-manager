@@ -12,7 +12,7 @@ header {
 
 .header-claro {
   background-color: var(--background-claro);
-  color: black;
+  color: var(--icon-color);
 }
 
 .header-escuro {

@@ -14,12 +14,13 @@
       </button>
     </div>
   </div>
-  <div class="list-files__files">
-    <app-arquivo></app-arquivo>
-    <app-arquivo></app-arquivo>
-    <app-arquivo></app-arquivo>
-    <app-arquivo></app-arquivo>
-    <app-arquivo></app-arquivo>
+  <div cdkDropList
+  (cdkDropListData)="files" class="list-files__files">
+    <app-arquivo data-id="1" cdkDrag [tema]="tema"></app-arquivo>
+    <app-arquivo data-id="2" cdkDrag [tema]="tema"></app-arquivo>
+    <app-arquivo data-id="3"  cdkDrag [tema]="tema"></app-arquivo>
+    <app-arquivo data-id="4"  cdkDrag [tema]="tema"></app-arquivo>
+    <app-arquivo data-id="5"  cdkDrag [tema]="tema"></app-arquivo>
   </div>
   <app-paginacao [tema]="tema"></app-paginacao>
 </section>

@@ -15,8 +15,16 @@
 }
 
 .barra-pesquisa-escuro input {
-  background-color: var(--background-body-escuro);
   color: white;
+}
+
+.input-claro {
+  background-color: var(--background-body-claro);
+}
+
+.input-escuro {
+  background-color: var(--background-body-escuro);
+
 }
 
 .barra-pesquisa__icon {

@@ -15,4 +15,13 @@ export class DiretorioComponent {
   @Input()
   tema: Tema = Tema.CLARO;
 
+
+
+  files!: any[];
+
+  teste(event: any) {
+    const elementoDropado = event.item.element.nativeElement as HTMLElement;
+    console.log(elementoDropado.getAttribute("data-id"))
+  }
+
 }

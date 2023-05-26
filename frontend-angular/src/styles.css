@@ -3,7 +3,7 @@
 :root {
   --dimensao-barra-header: 3em;
   --dimensao-barra-header-grande: 200px;
-  --background-body-claro: #F5F6FA;
+  --background-body-claro: #F1F1F1;
   --background-body-escuro: #0F0F12;
   --background-claro: #FFFFFF;
   --background-escuro: #1F2128;
@@ -11,7 +11,7 @@
   --icon-color-escuro: white;
   --color-button: #7363DC;
   --color-tag-escuro: #313441;
-  --color-tag-claro: #FDFDFE;
+  --color-tag-claro: #FFE6E6;
 }
 
 * {
@@ -47,8 +47,6 @@
   border: 3px solid var(--background-escuro);
 }
 
-
-
 .file-check {
   position: relative;
 }
@@ -59,18 +57,6 @@
   top: 2px;
   opacity: 0;
   cursor: pointer;
-}
-
-.file-check input:not(:checked) + .checkmark {
-  background-color: var(--background-escuro);
-  height: 1em;
-  content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/unchecked_checkbox.png");
-}
-
-.file-check input:checked + .checkmark {
-  background-color: var(--background-escuro);
-  height: 1em;
-  content: url("https://cdn1.iconfinder.com/data/icons/windows8_icons_iconpharm/26/checked_checkbox.png");
 }
 
 fa-icon {

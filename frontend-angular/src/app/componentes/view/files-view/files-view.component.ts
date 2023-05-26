@@ -19,6 +19,8 @@ export class FilesViewComponent {
   @Output()
   eventoAbrirModalAdicionarArquivo = new EventEmitter();
 
+  files!: any[];
+
   readonly iconeSearch = faSearch;
   readonly iconeDeletar = faTrash;
   readonly iconeAdicionar = faAdd;

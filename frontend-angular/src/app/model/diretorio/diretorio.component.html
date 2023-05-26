@@ -1,4 +1,9 @@
-<div class="diretorio-card diretorio-card-{{ tema }}">
+<div
+  cdkDropList
+  (cdkDropListDropped)="teste($event)"
+  (cdkDropListData)="files"
+  class="diretorio-card diretorio-card-{{ tema }}"
+>
   <div class="diretorio-nome">
     <fa-icon [icon]="iconeDiretorio"></fa-icon>
     <p>Nome do diretório</p>

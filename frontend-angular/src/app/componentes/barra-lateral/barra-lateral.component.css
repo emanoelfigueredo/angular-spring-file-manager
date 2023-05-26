@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   gap: 1em;
-  color: white;
+  color: var(--icon-color);
   padding: 0 1em;
 }
 
@@ -50,6 +50,11 @@
   width: 2em;
   height: 2em;
   border-radius: 7px;
+}
+
+.link-selecionado {
+  background-color: var(--color-button);
+  color: white;
 }
 
 .sections-links__icon-claro {
@@ -72,6 +77,16 @@
 
 .link-bottom {
   margin-bottom: 0.2em;
+}
+
+.trocar-tema-claro {
+  background-color: var(--color-tag-claro);
+  color: orange;
+}
+
+.trocar-tema-escuro {
+  background-color: var(--color-tag-escuro);
+  color: var(--color-button);
 }
 
 @media screen and (min-width: 900px) {
