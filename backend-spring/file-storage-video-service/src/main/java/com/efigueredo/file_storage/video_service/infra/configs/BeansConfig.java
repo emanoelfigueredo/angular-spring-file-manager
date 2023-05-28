@@ -30,5 +30,15 @@ public class BeansConfig {
         return new UsuarioLogadoImpl();
     }
 
+    @Bean
+    public PastaDiscoService pastaDiscoService() {
+        return new PastaDiscoServiceImpl();
+    }
+
+    @Bean
+    public ResolvedorPathPasta resolvedorPathPasta() {
+        return new ResolvedorPathPastasImpl();
+    }
+
 
 }

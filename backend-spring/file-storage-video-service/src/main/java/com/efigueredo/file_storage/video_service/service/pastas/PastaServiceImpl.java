@@ -17,35 +17,32 @@ public class PastaServiceImpl extends PastaService {
     private UsuarioLogado usuarioLogado;
 
     @Override
-    public Mono<Void> criarPasta(Mono<String> nomePasta) {
+    public Mono<Pasta> criarPasta(Mono<String> nomePasta) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
         return nomePasta
                 .flatMap(nome -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioExistirNome(idUsuarioLogado, nome))
                 .map(nome -> new Pasta(null, idUsuarioLogado, nome, false, 0, 0L))
-                .flatMap(super.pastaRepository::insert)
-                .then(Mono.empty());
+                .flatMap(super.pastaRepository::insert);
     }
 
     @Override
-    public Mono<Void> removerPasta(Mono<String> idPasta) {
+    public Mono<Pasta> removerPasta(Mono<String> idPasta) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
         return idPasta
                 .flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(idUsuarioLogado, id))
                 .flatMap(id -> super.pastaRepository.findByIdUsuarioAndId(idUsuarioLogado, id))
-                .flatMap(super.pastaRepository::delete)
-                .then(Mono.empty());
+                .doOnNext(super.pastaRepository::delete);
     }
 
     @Override
-    public Mono<Void> atualizarPasta(Mono<String> idPasta, String novoNome) {
+    public Mono<Pasta> atualizarPasta(Mono<String> idPasta, String novoNome) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
         return idPasta
                 .flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioExistirNome(idUsuarioLogado, novoNome))
                 .flatMap(nome -> idPasta.flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(idUsuarioLogado, id)))
                 .flatMap(id -> super.pastaRepository.findByIdUsuarioAndId(idUsuarioLogado, id))
                 .doOnNext(pasta -> pasta.setNome(novoNome))
-                .flatMap(super.pastaRepository::save)
-                .then(Mono.empty());
+                .flatMap(super.pastaRepository::save);
     }
 
     @Override
