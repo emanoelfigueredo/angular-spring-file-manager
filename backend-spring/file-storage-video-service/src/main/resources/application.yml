@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: spring-webflux-guide
+  data:
+    mongodb:
+      database: FileStorageVideo
+      host: localhost
+      port: 27017
+
+logging:
+  level:
+    io:
+      reflectoring: DEBUG
+    org:
+      springframework:
+        web: INFO
+    reactor:
+      netty:
+        http:
+          client: DEBUG

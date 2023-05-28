@@ -22,4 +22,8 @@ public class Pasta {
     private int quatidadeArquivos;
     private long tamanho;
 
+    public void trocarFavorito() {
+        this.favorito = !this.favorito;
+    }
+
 }
