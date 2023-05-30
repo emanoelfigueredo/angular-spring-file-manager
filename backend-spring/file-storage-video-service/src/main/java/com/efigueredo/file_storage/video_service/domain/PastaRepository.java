@@ -13,8 +13,9 @@ public interface PastaRepository extends ReactiveMongoRepository<Pasta, String> 
 
     Mono<Pasta> findByIdUsuarioAndId(long idUsuario, String id);
 
-    Mono<Boolean> existsByIdUsuarioAndId(long idUsuario, String idPasta);
-
     Mono<Boolean> existsByIdUsuarioAndNome(long idUsuario, String nome);
 
+    Mono<Pasta> findByIdUsuarioAndNome(long idUsuario, String nome);
+
+    Mono<Boolean> existsByIdUsuarioAndId(long idUsuario, String id);
 }

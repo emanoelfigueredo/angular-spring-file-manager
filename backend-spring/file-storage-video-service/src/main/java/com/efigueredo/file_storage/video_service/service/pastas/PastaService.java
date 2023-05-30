@@ -15,8 +15,8 @@ public abstract class PastaService {
     protected VerificadorPastas verificadorPastas;
 
     public abstract Mono<Pasta> criarPasta(Mono<String> nomePasta);
-    public abstract Mono<Pasta> removerPasta(Mono<String>  idPasta);
-    public abstract Mono<Pasta> atualizarPasta(Mono<String>  idPasta, String novoNome);
+    public abstract Mono<String> removerPasta(String nomePasta);
+    public abstract Mono<Pasta> atualizarPasta(String nomePasta, String novoNome);
     public abstract Flux<Pasta> listarPastasDoUsuario(int size, int page);
     public abstract Mono<Pasta> obterPastaDoUsuario(Mono<String>  idPasta);
     public abstract Mono<Void> mudarEstadoFavorito(Mono<String>  idPasta);

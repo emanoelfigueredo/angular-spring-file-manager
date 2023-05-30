@@ -20,27 +20,26 @@ public class PastaServiceImpl extends PastaService {
     public Mono<Pasta> criarPasta(Mono<String> nomePasta) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
         return nomePasta
-                .flatMap(nome -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioExistirNome(idUsuarioLogado, nome))
                 .map(nome -> new Pasta(null, idUsuarioLogado, nome, false, 0, 0L))
                 .flatMap(super.pastaRepository::insert);
     }
 
     @Override
-    public Mono<Pasta> removerPasta(Mono<String> idPasta) {
+    public Mono<String> removerPasta(String nomePasta) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
-        return idPasta
-                .flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(idUsuarioLogado, id))
-                .flatMap(id -> super.pastaRepository.findByIdUsuarioAndId(idUsuarioLogado, id))
-                .doOnNext(super.pastaRepository::delete);
+        return super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioNaoExistirNome(idUsuarioLogado, nomePasta)
+                .flatMap(nome -> super.pastaRepository.findByIdUsuarioAndNome(idUsuarioLogado, nomePasta))
+                .flatMap(super.pastaRepository::delete)
+                .then(Mono.just(nomePasta));
     }
 
     @Override
-    public Mono<Pasta> atualizarPasta(Mono<String> idPasta, String novoNome) {
+    public Mono<Pasta> atualizarPasta(String nomePasta, String novoNome) {
         long idUsuarioLogado = this.usuarioLogado.obterIdUsuarioLogado();
-        return idPasta
-                .flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioExistirNome(idUsuarioLogado, novoNome))
-                .flatMap(nome -> idPasta.flatMap(id -> super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(idUsuarioLogado, id)))
-                .flatMap(id -> super.pastaRepository.findByIdUsuarioAndId(idUsuarioLogado, id))
+        return super.verificadorPastas.lancarExcecaoQuandoPastaDeUsuarioExistirNome(idUsuarioLogado, novoNome)
+                .flatMap(novoNomeVerificado -> super.verificadorPastas
+                        .lancarExcecaoQuandoPastaDeUsuarioNaoExistirNome(idUsuarioLogado, nomePasta))
+                .flatMap(nome -> super.pastaRepository.findByIdUsuarioAndNome(idUsuarioLogado, nomePasta))
                 .doOnNext(pasta -> pasta.setNome(novoNome))
                 .flatMap(super.pastaRepository::save);
     }

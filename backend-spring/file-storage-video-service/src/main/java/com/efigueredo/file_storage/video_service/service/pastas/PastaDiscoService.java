@@ -4,9 +4,10 @@ import com.efigueredo.file_storage.video_service.domain.Pasta;
 
 public interface PastaDiscoService {
 
-    void criarPastaNoDisco(Pasta pasta);
-    void removerPastaDoDisco(Pasta pasta);
-    void criarPastaUsuarioNoDiscoCasoNaoExista(long idUsuarioLogado, Pasta pasta);
-    void criarPastaRootNoDiscoCasoNaoExita(Pasta pasta);
+    void criarPastaNoDisco(String nomePasta);
+    void removerPastaDoDisco(String nomePasta);
+    void alterarNomePastaNoDisco(String nomePasta, String novoNome);
+    void criarPastaUsuarioNoDiscoCasoNaoExista(long idUsuarioLogado);
+    void criarPastaRootNoDiscoCasoNaoExita();
 
 }

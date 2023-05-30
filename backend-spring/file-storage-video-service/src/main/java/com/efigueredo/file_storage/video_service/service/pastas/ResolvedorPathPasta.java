@@ -27,9 +27,9 @@ public abstract class ResolvedorPathPasta {
         return pastaRoot.resolve(String.format(this.templatePastaUsuario, idUsuario));
     }
 
-    public Path obterPathPastaCriada(Long idUsuario, String idPasta) {
+    public Path obterPathPastaCriada(Long idUsuario, String nomePasta) {
         return this.obterPathPastaUsuario(idUsuario)
-                .resolve(String.format(this.templatePastasCriadas, idPasta));
+                .resolve(String.format(this.templatePastasCriadas, nomePasta));
     }
 
 }

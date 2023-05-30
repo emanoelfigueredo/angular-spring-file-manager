@@ -9,7 +9,7 @@ public abstract class VerificadorPastas {
     @Autowired
     protected PastaRepository pastaRepository;
 
-    public abstract Mono<String> lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(long idUsuario, String idPasta);
+    public abstract Mono<String> lancarExcecaoQuandoPastaDeUsuarioNaoExistirNome(long idUsuario, String nome);
     public abstract Mono<String> lancarExcecaoQuandoPastaDeUsuarioExistirNome(long idUsuario, String nome);
-
+    public abstract Mono<String> lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(long idUsuarioLogado, String id);
 }
