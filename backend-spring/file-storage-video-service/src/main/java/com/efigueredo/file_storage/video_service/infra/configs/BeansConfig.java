@@ -1,9 +1,9 @@
 package com.efigueredo.file_storage.video_service.infra.configs;
 
-import com.efigueredo.file_storage.video_service.service.pastas.*;
-import com.efigueredo.file_storage.video_service.service.usuarios.UsuarioLogado;
-import com.efigueredo.file_storage.video_service.service.usuarios.UsuarioLogadoImpl;
-import org.modelmapper.ModelMapper;
+import com.efigueredo.file_storage.video_service.service.video.*;
+import com.efigueredo.file_storage.shared.service.files.FileStorageDiscoService;
+import com.efigueredo.file_storage.shared.service.files.TrocadorNomeService;
+import com.efigueredo.file_storage.shared.service.files.VerificadorService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,33 +11,23 @@ import org.springframework.context.annotation.Configuration;
 public class BeansConfig {
 
     @Bean
-    public ModelMapper modelMapper() {
-        return new ModelMapper();
+    public VideoService videoService() {
+        return new VideoServiceImpl();
     }
 
     @Bean
-    public PastaService pastaService() {
-        return new PastaServiceImpl();
+    public VerificadorService verificadorVideos() {
+        return new VerificadorVideos();
     }
 
     @Bean
-    public VerificadorPastas verificadorPastas() {
-        return new VerificadorPastasImpl();
+    public TrocadorNomeService trocadorNomeVideos() {
+        return new TrocadorNomeVideos();
     }
 
     @Bean
-    public UsuarioLogado usuarioLogado() {
-        return new UsuarioLogadoImpl();
-    }
-
-    @Bean
-    public PastaDiscoService pastaDiscoService() {
-        return new PastaDiscoServiceImpl();
-    }
-
-    @Bean
-    public ResolvedorPathPasta resolvedorPathPasta() {
-        return new ResolvedorPathPastasImpl();
+    public FileStorageDiscoService videosDiscoService() {
+        return new VideosDiscoService();
     }
 
 

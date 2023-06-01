@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Modal } from 'src/app/model/modal';
 import { ResolvedorExtencoesService } from 'src/app/services/resolvedor-extencoes.service';
 import { HttpClient, HttpRequest } from '@angular/common/http'
+import { InformacoesUploadVideo } from './upload-video';
 
 @Component({
   selector: 'app-modal-adicionar-arquivo',
@@ -78,12 +79,30 @@ export class ModalAdicionarArquivoComponent extends Modal {
   }
 
   public realizarUpload(): void {
+
     const data: FormData = new FormData();
-    data.append('videos', this.files[0]);
-    const newRequest = new HttpRequest('POST', 'http://localhost:8081/videos/teste', data, {
+
+    this.files.forEach(file => {
+      console.log(file)
+      data.append("videos", file)
+
+      let d: InformacoesUploadVideo = {
+        nome: file.name,
+        extencao: "mp4",
+        tamanho: file.size,
+        idPasta: "6474e55231d9207f3ef763ed"
+      }
+
+      data.append("dados", JSON.stringify(d))
+    });
+
+
+    const newRequest = new HttpRequest('POST', 'http://localhost:8081/videos', data, {
       reportProgress: true
     });
-    this.httpClient.request(newRequest).subscribe();
+    this.httpClient.request(newRequest).subscribe((response) => {
+      console.log(response);
+    });
   }
 
 }

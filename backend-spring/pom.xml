@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.1.0</version>
     </parent>
     <groupId>com.efigueredo</groupId>
     <artifactId>file-storage-project</artifactId>
@@ -18,5 +18,9 @@
     </properties>
     <modules>
         <module>file-storage-video-service</module>
+        <module>file-storage-arquivos-service</module>
+        <module>file-storage-audios-service</module>
+        <module>file-storage-imagens-service</module>
+        <module>file-storage-shared</module>
     </modules>
 </project>

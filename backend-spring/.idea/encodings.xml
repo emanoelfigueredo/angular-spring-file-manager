@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/file-storage-arquivos-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-storage-audios-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-storage-imagens-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-storage-shared/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/file-storage-shared/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-storage-video-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-storage-videos-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/file-storage/src/main/java" charset="UTF-8" />

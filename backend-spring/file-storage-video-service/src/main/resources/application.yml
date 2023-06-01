@@ -2,6 +2,11 @@ server:
   port: 8081
 
 spring:
+  main:
+    allow-bean-definition-overriding: true
+  output:
+    ansi:
+      enabled: always
   application:
     name: spring-webflux-guide
   data:
@@ -21,3 +26,6 @@ logging:
       netty:
         http:
           client: DEBUG
+
+
+
