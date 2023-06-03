@@ -77,10 +77,13 @@ public class VideoController {
                 .then(Mono.empty());
     }
 
-    @DeleteMapping("all/{idPasta}")
-    public Mono<Void> removerTodosVideosDaPasta(@PathVariable String idPasta) {
-        return this.videoService.removerTodosFilesDaPasta(idPasta)
-                .flatMap(id -> this.pastaDiscoService.removerTodosFilesDaPasta(idPasta));
+    @DeleteMapping("all/{nomePasta}")
+    public Mono<Void> removerTodosVideosDaPasta(@PathVariable String nomePasta) {
+        return this.videoService.removerTodosFilesDaPasta(nomePasta)
+                .flatMap(nome -> {
+                    this.pastaDiscoService.removerTodosFilesDaPasta(nomePasta);
+                    return Mono.empty();
+                });
 
     }
 

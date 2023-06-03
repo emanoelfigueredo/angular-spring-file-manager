@@ -14,9 +14,7 @@ public interface VideoRepository extends ReactiveMongoRepository<Video, String> 
 
     Mono<Video> findByIdAndIdUsuario(String idVideo, long idUsuario);
 
-    Mono<Void> deleteByIdAndIdUsuario(String idVideo, long idUsuarioLogado);
-
     Mono<Long> countByIdPastaAndNomeContaining(String idPasta, String nome);
 
-    Mono<Void> deleteAllByIdUsuarioAndIdPasta(long idUsuario, String idPasta);
+    Mono<?> deleteAllByIdUsuarioAndIdPasta(long idUsuarioLogado, String id);
 }

@@ -107,22 +107,14 @@ public class PastaDiscoServiceImpl implements PastaDiscoService {
     }
 
     @Override
-    public Mono<Void> removerTodosFilesDaPasta(String idPasta) {
-        return Mono.just(idPasta)
-                .doOnNext(System.out::println)
-                .flatMap(id -> this.pastaRepository.findByIdUsuarioAndId(this.idUsuarioLogado, id))
-                .flatMap(this::limparPasta);
-    }
-
-    private Mono<Void> limparPasta(Pasta pasta) {
+    public void removerTodosFilesDaPasta(String nomePasta) {
         Path pathPasta = this.resolvedorPathPasta
-                .obterPathPastaCriada(this.idUsuarioLogado, pasta.getNome());
+                .obterPathPastaCriada(this.idUsuarioLogado, nomePasta);
         try {
             FileUtils.cleanDirectory(pathPasta.toFile());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return Mono.empty();
     }
 
 }

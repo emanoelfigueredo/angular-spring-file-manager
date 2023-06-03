@@ -37,11 +37,6 @@ public class GlobalBeansConfig {
     }
 
     @Bean
-    public ResolvedorPathPasta resolvedorPathPasta() {
-        return new ResolvedorPathPastasImpl();
-    }
-
-    @Bean
     public WebProperties.Resources resources() {
         return new WebProperties.Resources();
     }

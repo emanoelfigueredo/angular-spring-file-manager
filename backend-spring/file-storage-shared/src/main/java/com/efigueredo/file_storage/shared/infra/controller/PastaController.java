@@ -12,7 +12,6 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("videos/pastas")
 public class PastaController {
 
     @Autowired
@@ -38,7 +37,7 @@ public class PastaController {
         return this.verificadorPastas
                 .lancarExcecaoQuandoPastaDeUsuarioExistirNome(this.usuarioLogado.obterIdUsuarioLogado(), nome)
                 .doOnNext(nomePasta -> this.pastaDiscoService.criarPastaNoDisco(nomePasta))
-                .flatMap(nomePasta -> this.pastaService.criarPasta(Mono.just(nomePasta)))
+                .flatMap(nomePasta -> this.pastaService.criarPasta(nomePasta))
                 .then(Mono.empty());
     }
 

@@ -20,8 +20,14 @@ public abstract class ResolvedorPathPasta {
     }
 
     protected abstract String definirPastaRoot();
-    protected abstract String definirTemplatePastaUsuario();
-    protected abstract String definirTemplatePastasCriadas();
+
+    protected String definirTemplatePastaUsuario() {
+        return "usuario_%d";
+    }
+
+    protected String definirTemplatePastasCriadas() {
+        return "pasta_%s";
+    }
 
     public Path obterPathPastaUsuario(Long idUsuario) {
         return pastaRoot.resolve(String.format(this.templatePastaUsuario, idUsuario));

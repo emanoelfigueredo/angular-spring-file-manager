@@ -9,6 +9,6 @@ public interface PastaDiscoService {
     void alterarNomePastaNoDisco(String nomePasta, String novoNome);
     void criarPastaUsuarioNoDiscoCasoNaoExista(long idUsuarioLogado);
     void criarPastaRootNoDiscoCasoNaoExita();
-    Mono<Void> removerTodosFilesDaPasta(String nomePasta);
+    void removerTodosFilesDaPasta(String nomePasta);
 
 }

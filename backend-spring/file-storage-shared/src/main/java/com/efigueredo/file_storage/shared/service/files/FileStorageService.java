@@ -9,7 +9,7 @@ public interface FileStorageService {
     Mono<FileStorageArquivo> uploadFile(FileStorageDto dto);
     Mono<FileStorageArquivo> alterarNomeFileDoUsuario(String idFile, String novoNome);
     Mono<FileStorageArquivo> removerFileDoUsuario(FileStorageArquivo file);
-    Mono<String> removerTodosFilesDaPasta(String idPasta);
+    Mono<String> removerTodosFilesDaPasta(String nomePasta);
     Mono<FileStorageArquivo> obterFileDoUsuario(String idFile);
     Mono<Void> inverterValorFavoritoFile(String idFile);
 

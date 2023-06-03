@@ -99,10 +99,10 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public Mono<String> removerTodosFilesDaPasta(String idPasta) {
-        return this.pastaService.removerTodosArquivosDaPasta(idPasta)
-                .flatMap(pasta -> this.videoRepository.deleteAllByIdUsuarioAndIdPasta(this.idUsuarioLogado, idPasta))
-                .then(Mono.just(idPasta));
+    public Mono<String> removerTodosFilesDaPasta(String nome) {
+        return this.pastaService.removerTodosArquivosDaPasta(nome)
+                .flatMap(pasta -> this.videoRepository.deleteAllByIdUsuarioAndIdPasta(this.idUsuarioLogado, pasta.getId()))
+                .then(Mono.just(nome));
     }
 
     @Override
