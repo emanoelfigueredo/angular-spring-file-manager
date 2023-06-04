@@ -1,4 +1,4 @@
-package com.efigueredo.filestorage.imagens_service;
+package com.efigueredo.file_storage.imagens_service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

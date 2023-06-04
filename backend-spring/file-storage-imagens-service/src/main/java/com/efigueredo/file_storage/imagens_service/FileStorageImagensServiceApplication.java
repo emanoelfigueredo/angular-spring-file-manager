@@ -1,4 +1,4 @@
-package com.efigueredo.file_storage.audios_service;
+package com.efigueredo.file_storage.imagens_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.efigueredo.file_storage.*"})
 @EnableReactiveMongoRepositories(basePackages = {"com.efigueredo.file_storage.*"})
-public class FileStorageAudiosServiceApplication {
+public class FileStorageImagensServiceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FileStorageAudiosServiceApplication.class, args);
+		SpringApplication.run(FileStorageImagensServiceApplication.class, args);
 	}
 
 }

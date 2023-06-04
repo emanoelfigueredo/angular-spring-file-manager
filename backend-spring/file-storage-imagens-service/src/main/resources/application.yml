@@ -1,0 +1,28 @@
+server:
+  port: 8083
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  output:
+    ansi:
+      enabled: always
+  application:
+    name: FILE-STORAGE-SERVICE-IMAGENS
+  data:
+    mongodb:
+      database: FileStorageImagens
+      host: localhost
+      port: 27017
+
+logging:
+  level:
+    io:
+      reflectoring: DEBUG
+    org:
+      springframework:
+        web: INFO
+    reactor:
+      netty:
+        http:
+          client: DEBUG
