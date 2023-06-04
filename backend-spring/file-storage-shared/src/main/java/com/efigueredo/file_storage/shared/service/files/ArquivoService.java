@@ -7,12 +7,12 @@ import reactor.core.publisher.Mono;
 
 public interface ArquivoService {
 
-    Flux<Arquivo> listarVideosDoUsuario(String idPasta);
-    Mono<Arquivo> uploadFile(FileStorageDto dto);
-    Mono<Arquivo> alterarNomeFileDoUsuario(String idFile, String novoNome);
-    Mono<Arquivo> removerFileDoUsuario(Arquivo file);
-    Mono<String> removerTodosFilesDaPasta(String nomePasta);
-    Mono<Arquivo> obterFileDoUsuario(String idFile);
+    Flux<Arquivo> listarArquivosDoUsuario(String idPasta);
+    Mono<Arquivo> uploadArquivo(FileStorageDto dto);
+    Mono<Arquivo> alterarNomeArquivoDoUsuario(String idFile, String novoNome);
+    Mono<Arquivo> removerArquivoDoUsuario(Arquivo file);
+    Mono<String> removerTodosOsArquivosDaPasta(String nomePasta);
+    Mono<Arquivo> obterArquivoDoUsuario(String idFile);
     Mono<Void> inverterValorFavoritoFile(String idFile);
 
 }

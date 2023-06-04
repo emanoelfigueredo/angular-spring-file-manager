@@ -16,13 +16,14 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+@RestController
 public class ArquivoController {
 
     @Autowired
-    private ArquivoService videoService;
+    private ArquivoService fileService;
 
     @Autowired
-    private VerificadorService verificadorVideos;
+    private VerificadorService verificadorService;
 
     @Autowired
     private ConvertedorStringJsonParaDto convertedorStringJsonParaDto;
@@ -31,68 +32,66 @@ public class ArquivoController {
     private PastaRepository pastaRepository;
 
     @Autowired
-    private FileStorageDiscoService videosDiscoService;
+    private FileStorageDiscoService discoService;
 
     @Autowired
     private PastaDiscoService pastaDiscoService;
 
     @GetMapping("pasta/{idPasta}")
-    public Flux<Arquivo> listarVideosDoUsuario(@PathVariable String idPasta) {
-        return this.videoService.listarVideosDoUsuario(idPasta);
+    public Flux<Arquivo> listarArquivosDoUsuario(@PathVariable String idPasta) {
+        return this.fileService.listarArquivosDoUsuario(idPasta);
     }
 
     @GetMapping("{id}")
-    public Mono<Resource> obterVideo(@PathVariable String id) {
-        return this.videoService.obterFileDoUsuario(id)
-                .flatMap(this.videosDiscoService::obterFileDoDisco);
+    public Mono<Resource> obterArquivos(@PathVariable String id) {
+        return this.fileService.obterArquivoDoUsuario(id)
+                .flatMap(this.discoService::obterFileDoDisco);
     }
 
     @PostMapping(consumes = {"multipart/form-data"})
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<?> uploadVideo(@RequestPart("videos") Flux<FilePart> videos,
+    public Mono<?> uploadArquivos(@RequestPart("arquivos") Flux<FilePart> arquivos,
                                             @RequestPart("dados") Flux<String> dadosVideos) {
-        return Flux.zip(videos, dadosVideos)
+        return Flux.zip(arquivos, dadosVideos)
                 .map(upload -> upload.mapT2(this.convertedorStringJsonParaDto::converterStringParaDtoUpload))
-                .map(upload -> upload.mapT2(this.videoService::uploadFile))
-                .flatMap(this.videosDiscoService::salvarFileNoDisco)
+                .map(upload -> upload.mapT2(this.fileService::uploadArquivo))
+                .flatMap(this.discoService::salvarFileNoDisco)
                 .then(Mono.empty());
     }
 
     @PatchMapping("{id}")
-    public Mono<Void> alterarNomeVideo(@PathVariable String id,
+    public Mono<Void> alteararNomeArquivo(@PathVariable String id,
                                        @RequestParam("novoNome") String novoNome) {
-        return this.videoService.alterarNomeFileDoUsuario(id, novoNome)
+        return this.fileService.alterarNomeArquivoDoUsuario(id, novoNome)
                 .then(Mono.empty());
     }
 
     @DeleteMapping("{id}")
-    public Mono<Void> removerVideo(@PathVariable String id) {
-        return this.videoService.obterFileDoUsuario(id)
-                .flatMap(this.videosDiscoService::removerFileDoDisco)
-                .flatMap(video -> this.videoService.removerFileDoUsuario(video))
+    public Mono<Void> removerArquivos(@PathVariable String id) {
+        return this.fileService.obterArquivoDoUsuario(id)
+                .flatMap(this.discoService::removerFileDoDisco)
+                .flatMap(arquivo -> this.fileService.removerArquivoDoUsuario(arquivo))
                 .then(Mono.empty());
     }
 
     @DeleteMapping("all/{nomePasta}")
-    public Mono<Void> removerTodosVideosDaPasta(@PathVariable String nomePasta) {
-        return this.videoService.removerTodosFilesDaPasta(nomePasta)
+    public Mono<Void> removerTodosOsArquivosDaPasta(@PathVariable String nomePasta) {
+        return this.fileService.removerTodosOsArquivosDaPasta(nomePasta)
                 .flatMap(nome -> {
                     this.pastaDiscoService.removerTodosFilesDaPasta(nomePasta);
                     return Mono.empty();
                 });
-
     }
 
     @DeleteMapping("list")
-    public Flux<Void> removerMuitosVideos(@RequestBody DeleteListFilesDto ids) {
+    public Flux<Void> removerMuitosArquivos(@RequestBody DeleteListFilesDto ids) {
         return Flux.fromStream(ids.getListaIdFiles().stream())
-                .flatMap(this::removerVideo);
-
+                .flatMap(this::removerArquivos);
     }
 
     @PatchMapping("inverter-favorito/{id}")
     public Mono<Void> inverterFavorito(@PathVariable String id) {
-        return this.videoService.inverterValorFavoritoFile(id);
+        return this.fileService.inverterValorFavoritoFile(id);
     }
 
 }

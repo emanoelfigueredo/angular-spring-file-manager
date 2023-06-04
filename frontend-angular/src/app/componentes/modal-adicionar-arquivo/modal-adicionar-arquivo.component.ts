@@ -84,20 +84,20 @@ export class ModalAdicionarArquivoComponent extends Modal {
 
     this.files.forEach(file => {
       console.log(file)
-      data.append("videos", file)
+      data.append("arquivos", file)
 
       let d: InformacoesUploadVideo = {
         nome: file.name,
         extencao: "mp4",
         tamanho: file.size,
-        idPasta: "6474e55231d9207f3ef763ed"
+        idPasta: "647c7e23e534971cf2ee48fd"
       }
 
       data.append("dados", JSON.stringify(d))
     });
 
 
-    const newRequest = new HttpRequest('POST', 'http://localhost:8081/videos', data, {
+    const newRequest = new HttpRequest('POST', 'http://localhost:8082/audios', data, {
       reportProgress: true
     });
     this.httpClient.request(newRequest).subscribe((response) => {

@@ -7,14 +7,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {
-		"com.efigueredo.file_storage.*",
-		"com.efigueredo.file_storage.shared.domain.PastaRepository"
-})
-@EnableReactiveMongoRepositories(basePackages = {
-		"com.efigueredo.file_storage.*",
-		"com.efigueredo.file_storage.shared.domain.PastaRepository"
-})
+@ComponentScan(basePackages = {"com.efigueredo.file_storage.*"})
+@EnableReactiveMongoRepositories(basePackages = {"com.efigueredo.file_storage.*"})
 public class  FileStorageVideoServiceApplication {
 
 	public static void main(String[] args) {

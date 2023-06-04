@@ -16,5 +16,4 @@ public class BeansConfig {
         return new ResolvedorPathPastasAudios();
     }
 
-
 }

@@ -2,7 +2,6 @@ package com.efigueredo.file_storage.shared.service.files;
 
 import com.efigueredo.file_storage.shared.domain.ArquivoRepository;
 import com.efigueredo.file_storage.shared.service.dto.FileStorageDto;
-import com.efigueredo.file_storage.shared.service.files.TrocadorNomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
@@ -11,11 +10,11 @@ import reactor.core.publisher.Mono;
 public class TrocadorNomeServiceImpl implements TrocadorNomeService {
 
     @Autowired
-    private ArquivoRepository videoRepository;
+    private ArquivoRepository arquivoRepository;
 
     @Override
     public Mono<FileStorageDto> trocarNomeCasoJaExista(FileStorageDto upload) {
-        return this.videoRepository.existsByNomeAndIdPasta(upload.getNome(), upload.getIdPasta())
+        return this.arquivoRepository.existsByNomeAndIdPasta(upload.getNome(), upload.getIdPasta())
                 .flatMap(existe -> {
                     if(existe) {
                         return this.alterarNomeSeJaExistir(upload);
@@ -25,25 +24,25 @@ public class TrocadorNomeServiceImpl implements TrocadorNomeService {
                 .flatMap(e ->  Mono.just(upload));
     }
 
-    private Mono<FileStorageDto> alterarNomeSeJaExistir(FileStorageDto dtoUploadVideo) {
-        String nomeCompleto = dtoUploadVideo.getNome();
+    private Mono<FileStorageDto> alterarNomeSeJaExistir(FileStorageDto dtoUploadArquivo) {
+        String nomeCompleto = dtoUploadArquivo.getNome();
         int indexPonto = nomeCompleto.lastIndexOf(".");
         String nome = nomeCompleto.substring(0, indexPonto);
-        return this.videoRepository.countByIdPastaAndNomeContaining(dtoUploadVideo.getIdPasta(), nome)
+        return this.arquivoRepository.countByIdPastaAndNomeContaining(dtoUploadArquivo.getIdPasta(), nome)
                 .flatMap(quantidade -> {
                     if(quantidade > 0) {
                         System.out.println(quantidade);
-                        this.inserirParentesesQuantidadeNoNome(dtoUploadVideo, quantidade, indexPonto);
+                        this.inserirParentesesQuantidadeNoNome(dtoUploadArquivo, quantidade, indexPonto);
                     }
-                    return Mono.just(dtoUploadVideo);
+                    return Mono.just(dtoUploadArquivo);
                 });
     }
 
-    private void inserirParentesesQuantidadeNoNome(FileStorageDto dtoUploadVideo, long quantidade, int indexPonto) {
-        String nome = dtoUploadVideo.getNome();
-        String nomeVideo = nome.substring(0, indexPonto);
-        String extencaoVideo = nome.substring(indexPonto);
-        String novoNome = nomeVideo + "(" + (quantidade + 1) + ")" + extencaoVideo;
-        dtoUploadVideo.setNome(novoNome);
+    private void inserirParentesesQuantidadeNoNome(FileStorageDto dtoUploadArquivo, long quantidade, int indexPonto) {
+        String nome = dtoUploadArquivo.getNome();
+        String nomeArquivo = nome.substring(0, indexPonto);
+        String extencaoArquivo = nome.substring(indexPonto);
+        String novoNome = nomeArquivo + "(" + (quantidade + 1) + ")" + extencaoArquivo;
+        dtoUploadArquivo.setNome(novoNome);
     }
 }

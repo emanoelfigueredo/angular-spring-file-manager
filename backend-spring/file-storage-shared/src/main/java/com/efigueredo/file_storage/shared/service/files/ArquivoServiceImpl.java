@@ -26,19 +26,19 @@ import java.time.LocalDateTime;
 public class ArquivoServiceImpl implements ArquivoService {
 
     @Autowired
-    private ArquivoRepository videoRepository;
+    private ArquivoRepository arquivoRepository;
 
     @Autowired
-    private VerificadorService verificadorVideos;
+    private VerificadorService verificadorService;
 
     @Autowired
-    private TrocadorNomeService trocadorNomeVideos;
+    private TrocadorNomeService trocadorNomeService;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    private ServicesUtils<Arquivo> servicesUtilsVideo;
+    private ServicesUtils<Arquivo> servicesUtilsArquivo;
 
     @Autowired
     private ServicesUtils<Void> servicesUtilsVoid;
@@ -57,97 +57,95 @@ public class ArquivoServiceImpl implements ArquivoService {
     }
 
     @Override
-    public Flux<Arquivo> listarVideosDoUsuario(String idPasta) {
+    public Flux<Arquivo> listarArquivosDoUsuario(String idPasta) {
         return this.pastaRepository.existsByIdUsuarioAndId(this.idUsuarioLogado, idPasta)
                 .flatMapMany(Flux::just)
-                .flatMap(pastaExiste -> this.servicesUtilsVideo.executarQuandoPastaExistirFlux(pastaExiste, idPasta,
-                        () -> this.videoRepository
+                .flatMap(pastaExiste -> this.servicesUtilsArquivo.executarQuandoPastaExistirFlux(pastaExiste, idPasta,
+                        () -> this.arquivoRepository
                                 .findAllByIdUsuarioAndIdPastaOrderByMomentoUploadDesc(this.idUsuarioLogado, idPasta)));
-
     }
 
     @Override
-    public Mono<Arquivo> uploadFile(FileStorageDto dto) {
+    public Mono<Arquivo> uploadArquivo(FileStorageDto dto) {
         return Mono.just(dto)
-                .flatMap(this.trocadorNomeVideos::trocarNomeCasoJaExista)
+                .flatMap(this.trocadorNomeService::trocarNomeCasoJaExista)
                 .flatMap(this::verificarSePastaExiste)
-                .flatMap(this::salvarVideoNoBancoDeDados)
+                .flatMap(this::salvarArquivoNoBancoDeDados)
                 .flatMap(this.pastaService::aumentarTamanhoDaPasta)
                 .flatMap(this.pastaService::contabilizarAdicaoArquivoNaPasta);
     }
 
     @Override
-    public Mono<Arquivo> alterarNomeFileDoUsuario(String idFile, String novoNome) {
-        return this.verificadorVideos.lancarExcecaoQuandoFileDeIdNaoExistir(idFile)
-                .flatMap(id -> this.videoRepository.findByIdAndIdUsuario(idFile, this.idUsuarioLogado))
-                .zipWhen(video -> this.obterDtoUpladComNomeAdequado(video, novoNome))
-                .flatMap(this::trocarNomeVideo);
+    public Mono<Arquivo> alterarNomeArquivoDoUsuario(String idFile, String novoNome) {
+        return this.verificadorService.lancarExcecaoQuandoFileDeIdNaoExistir(idFile)
+                .flatMap(id -> this.arquivoRepository.findByIdAndIdUsuario(idFile, this.idUsuarioLogado))
+                .zipWhen(arquivo -> this.obterDtoUpladComNomeAdequado(arquivo, novoNome))
+                .flatMap(this::trocarNomeArquivo);
     }
 
     @Override
-    public Mono<Arquivo> removerFileDoUsuario(Arquivo video) {
-        return Mono.just( video)
-                .flatMap(video1 -> this.videoRepository.delete(video1))
-                .then(Mono.just(video))
+    public Mono<Arquivo> removerArquivoDoUsuario(Arquivo arquivo) {
+        return this.arquivoRepository.delete(arquivo)
+                .then(Mono.just(arquivo))
                 .flatMap(this.pastaService::diminuirTamanhoDaPasta)
                 .flatMap(this.pastaService::contabilizarRemocaoArquivoNaPasta);
     }
 
     @Override
-    public Mono<String> removerTodosFilesDaPasta(String nome) {
+    public Mono<String> removerTodosOsArquivosDaPasta(String nome) {
         return this.pastaService.removerTodosArquivosDaPasta(nome)
-                .flatMap(pasta -> this.videoRepository.deleteAllByIdUsuarioAndIdPasta(this.idUsuarioLogado, pasta.getId()))
+                .flatMap(pasta -> this.arquivoRepository.deleteAllByIdUsuarioAndIdPasta(this.idUsuarioLogado, pasta.getId()))
                 .then(Mono.just(nome));
     }
 
     @Override
-    public Mono<Arquivo> obterFileDoUsuario(String idVideo) {
-        return this.verificadorVideos.lancarExcecaoQuandoFileDeIdNaoExistir(idVideo)
-                .flatMap(video -> this.videoRepository.findByIdAndIdUsuario(idVideo, this.idUsuarioLogado));
+    public Mono<Arquivo> obterArquivoDoUsuario(String idVideo) {
+        return this.verificadorService.lancarExcecaoQuandoFileDeIdNaoExistir(idVideo)
+                .flatMap(video -> this.arquivoRepository.findByIdAndIdUsuario(idVideo, this.idUsuarioLogado));
     }
 
     @Override
     public Mono<Void> inverterValorFavoritoFile(String idFile) {
-        return this.verificadorVideos.lancarExcecaoQuandoFileDeIdNaoExistir(idFile)
-                .flatMap(id -> this.videoRepository.findByIdAndIdUsuario(idFile, this.idUsuarioLogado))
-                .flatMap(video -> {
-                    video.inverterFavorito();
-                    return this.videoRepository.save(video);
+        return this.verificadorService.lancarExcecaoQuandoFileDeIdNaoExistir(idFile)
+                .flatMap(id -> this.arquivoRepository.findByIdAndIdUsuario(idFile, this.idUsuarioLogado))
+                .flatMap(arquivo -> {
+                    arquivo.inverterFavorito();
+                    return this.arquivoRepository.save(arquivo);
                 })
                 .then(Mono.empty());
     }
 
-    private Mono<Arquivo> salvarVideoNoBancoDeDados(FileStorageDto dto) {
-        Arquivo video = this.modelMapper.map(dto, Arquivo.class);
-        video.setFavorito(false);
-        video.setIdUsuario(this.idUsuarioLogado);
-        video.setMomentoUpload(LocalDateTime.now());
-        video.setId(null);
-        return this.videoRepository.save(video);
+    private Mono<Arquivo> salvarArquivoNoBancoDeDados(FileStorageDto dto) {
+        Arquivo arquivo = this.modelMapper.map(dto, Arquivo.class);
+        arquivo.setFavorito(false);
+        arquivo.setIdUsuario(this.idUsuarioLogado);
+        arquivo.setMomentoUpload(LocalDateTime.now());
+        arquivo.setId(null);
+        return this.arquivoRepository.save(arquivo);
     }
 
-    private Mono<Arquivo> trocarNomeVideo(Tuple2<Arquivo, FileStorageDto> tuple) {
-        Arquivo video = tuple.getT1();
+    private Mono<Arquivo> trocarNomeArquivo(Tuple2<Arquivo, FileStorageDto> tuple) {
+        Arquivo arquivo = tuple.getT1();
         FileStorageDto dados = tuple.getT2();
-        if(this.nomePodeSerTrocado(video, dados)) {
-            video.setNome(dados.getNome());
-            return this.videoRepository.save(video);
+        if(this.nomePodeSerTrocado(arquivo, dados)) {
+            arquivo.setNome(dados.getNome());
+            return this.arquivoRepository.save(arquivo);
         };
-        return Mono.just(video) ;
+        return Mono.just(arquivo) ;
     }
 
-    private boolean nomePodeSerTrocado(Arquivo video, FileStorageDto dados) {
-        String nomeCompletoVideo = video.getNome();
+    private boolean nomePodeSerTrocado(Arquivo arquivo, FileStorageDto dados) {
+        String nomeCompletoArquivo = arquivo.getNome();
         String nomeCompletoDados = dados.getNome();
-        String nomeVideo = nomeCompletoVideo.substring(0, nomeCompletoVideo.lastIndexOf(".") - 3);
+        String nomeArquivo = nomeCompletoArquivo.substring(0, nomeCompletoArquivo.lastIndexOf(".") - 3);
         String nomeDados = nomeCompletoDados.substring(0, nomeCompletoDados.lastIndexOf(".") - 3);
-        return !nomeVideo.equals(nomeDados);
+        return !nomeArquivo.equals(nomeDados);
     }
 
     private Mono<FileStorageDto> obterDtoUpladComNomeAdequado(Arquivo video, String novoNome) {
         FileStorageDto dto = this.modelMapper.map(video, FileStorageDto.class);
         dto.setNome(novoNome);
-        return this.trocadorNomeVideos.trocarNomeCasoJaExista(dto);
+        return this.trocadorNomeService.trocarNomeCasoJaExista(dto);
     }
 
     private Mono<FileStorageDto> verificarSePastaExiste(FileStorageDto dto) {

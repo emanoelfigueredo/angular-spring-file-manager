@@ -3,7 +3,6 @@ package com.efigueredo.file_storage.shared.service.files;
 
 import com.efigueredo.file_storage.shared.domain.Arquivo;
 import com.efigueredo.file_storage.shared.domain.PastaRepository;
-import com.efigueredo.file_storage.shared.service.files.FileStorageDiscoService;
 import com.efigueredo.file_storage.shared.service.pastas.ResolvedorPathPasta;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogado;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogadoImpl;
@@ -35,33 +34,29 @@ public class FileStorageDiscoServiceImpl implements FileStorageDiscoService {
     @Override
     public Mono<Tuple2<FilePart, Mono<Arquivo>>> salvarFileNoDisco(Tuple2<FilePart, Mono<Arquivo>> tuple) {
         return tuple.getT2()
-                .flatMap(this::obterPathVideo)
-                .flatMap(pathVideo -> tuple.getT1().transferTo(pathVideo))
+                .flatMap(this::obterPathArquivo)
+                .flatMap(pathArquivo -> tuple.getT1().transferTo(pathArquivo))
                 .then(Mono.just(tuple));
     }
 
     @Override
-    public Mono<Arquivo> removerFileDoDisco(Arquivo file) {
-        Arquivo video = file;
-        return Mono.just(video)
-                .flatMap(this::obterPathVideo)
-                .flatMap(pathVideo -> {
+    public Mono<Arquivo> removerFileDoDisco(Arquivo arquivo) {
+        return Mono.just(arquivo)
+                .flatMap(this::obterPathArquivo)
+                .flatMap(pathArquivo -> {
                     try {
-                        Files.deleteIfExists(pathVideo);
-                    } catch (Exception e) {
-
-                    }
+                        Files.deleteIfExists(pathArquivo);
+                    } catch (Exception e) {}
                     finally {
-                        return Mono.just(video);
-                }
+                        return Mono.just(arquivo);
+                    }
                 });
     }
 
     @Override
-    public Mono<Resource> obterFileDoDisco(Arquivo file) {
-        Arquivo video = file;
-        return Mono.just(video)
-                .flatMap(this::obterPathVideo)
+    public Mono<Resource> obterFileDoDisco(Arquivo arquivo) {
+        return Mono.just(arquivo)
+                .flatMap(this::obterPathArquivo)
                 .flatMap(this::obterResource);
     }
 
@@ -74,11 +69,10 @@ public class FileStorageDiscoServiceImpl implements FileStorageDiscoService {
             }
     }
 
-    private Mono<Path> obterPathVideo(Arquivo file) {
-        Arquivo video = file;
-        return this.pastaRepository.findByIdUsuarioAndId(this.idUsuarioLogado, video.getIdPasta())
+    private Mono<Path> obterPathArquivo(Arquivo arquivo) {
+        return this.pastaRepository.findByIdUsuarioAndId(this.idUsuarioLogado, arquivo.getIdPasta())
                 .map(pasta -> this.resolvedorPathPasta
-                        .obterPathFile(this.idUsuarioLogado, pasta.getNome(), video.getId(), video.getExtencao()));
+                        .obterPathFile(this.idUsuarioLogado, pasta.getNome(), arquivo.getId(), arquivo.getExtencao()));
     }
 
 }
