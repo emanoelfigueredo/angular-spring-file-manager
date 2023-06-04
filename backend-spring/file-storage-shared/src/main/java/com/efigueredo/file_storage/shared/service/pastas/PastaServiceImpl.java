@@ -1,6 +1,6 @@
 package com.efigueredo.file_storage.shared.service.pastas;
 
-import com.efigueredo.file_storage.shared.domain.FileStorageArquivo;
+import com.efigueredo.file_storage.shared.domain.Arquivo;
 import com.efigueredo.file_storage.shared.domain.Pasta;
 import com.efigueredo.file_storage.shared.domain.PastaRepository;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogadoImpl;
@@ -82,7 +82,7 @@ public class PastaServiceImpl implements PastaService {
     }
 
     @Override
-    public Mono<FileStorageArquivo> aumentarTamanhoDaPasta(FileStorageArquivo file) {
+    public Mono<Arquivo> aumentarTamanhoDaPasta(Arquivo file) {
         return this.obterPastaParaFile(file)
                 .flatMap(pasta -> {
                     pasta.contabilizarSomaTamanho(file.getTamanho());
@@ -92,7 +92,7 @@ public class PastaServiceImpl implements PastaService {
     }
 
     @Override
-    public Mono<FileStorageArquivo> diminuirTamanhoDaPasta(FileStorageArquivo file) {
+    public Mono<Arquivo> diminuirTamanhoDaPasta(Arquivo file) {
        return this.obterPastaParaFile(file)
                 .flatMap(pasta -> {
                     pasta.contabilizarSubtracaoTamanho(file.getTamanho());
@@ -102,7 +102,7 @@ public class PastaServiceImpl implements PastaService {
     }
 
     @Override
-    public Mono<FileStorageArquivo> contabilizarAdicaoArquivoNaPasta(FileStorageArquivo file) {
+    public Mono<Arquivo> contabilizarAdicaoArquivoNaPasta(Arquivo file) {
         return this.obterPastaParaFile(file)
                 .flatMap(pasta -> {
                     pasta.somarNovoArquivo();
@@ -112,7 +112,7 @@ public class PastaServiceImpl implements PastaService {
     }
 
     @Override
-    public Mono<FileStorageArquivo> contabilizarRemocaoArquivoNaPasta(FileStorageArquivo file) {
+    public Mono<Arquivo> contabilizarRemocaoArquivoNaPasta(Arquivo file) {
         return this.obterPastaParaFile(file)
                 .flatMap(pasta -> {
                     pasta.subtrairRemocaoArquivo();
@@ -130,7 +130,7 @@ public class PastaServiceImpl implements PastaService {
                 });
     }
 
-    private Mono<Pasta> obterPastaParaFile(FileStorageArquivo file) {
+    private Mono<Pasta> obterPastaParaFile(Arquivo file) {
         return Mono.just(file)
                 .flatMap(file1 -> this.verificadorPastas
                         .lancarExcecaoQuandoPastaDeUsuarioNaoExistirId(this.idUsuarioLogado, file.getIdPasta()))

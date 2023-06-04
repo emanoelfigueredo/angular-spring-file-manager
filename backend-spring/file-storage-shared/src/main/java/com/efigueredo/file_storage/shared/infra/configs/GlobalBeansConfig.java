@@ -1,5 +1,6 @@
 package com.efigueredo.file_storage.shared.infra.configs;
 
+import com.efigueredo.file_storage.shared.service.files.*;
 import com.efigueredo.file_storage.shared.service.pastas.*;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogado;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogadoImpl;
@@ -7,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class GlobalBeansConfig {
@@ -39,6 +41,12 @@ public class GlobalBeansConfig {
     @Bean
     public WebProperties.Resources resources() {
         return new WebProperties.Resources();
+    }
+
+
+    @Bean
+    public FileStorageDiscoService videosDiscoService() {
+        return new FileStorageDiscoServiceImpl();
     }
 
 }

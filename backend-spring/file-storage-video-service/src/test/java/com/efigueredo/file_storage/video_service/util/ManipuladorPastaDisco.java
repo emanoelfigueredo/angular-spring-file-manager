@@ -2,7 +2,7 @@ package com.efigueredo.file_storage.video_service.util;
 
 import com.efigueredo.file_storage.shared.service.pastas.ResolvedorPathPasta;
 import com.efigueredo.file_storage.shared.service.usuarios.UsuarioLogadoImpl;
-import com.efigueredo.file_storage.video_service.service.video.ResolvedorPathVideos;
+import com.efigueredo.file_storage.video_service.service.ResolvedorPathVideos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
